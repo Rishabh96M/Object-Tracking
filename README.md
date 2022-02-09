@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 # Object-Tracking
-Tracking a red ball on a white background and comparing the trajectory obtained by least square and total least square methods.
+Tracking a red ball on a white background and comparing the trajectory obtained by least square and total least square methods. Without using any high level functions of openCV.
 
 Verified on python 3.8.10 and packages used are NumPy, Matplotlib and cv2
 

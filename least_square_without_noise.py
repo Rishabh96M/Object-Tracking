@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture('Videos/ball_video2.mp4')
+cap = cv2.VideoCapture('Videos/ball_video1.mp4')
 
 x_top = []
 y_top = []
@@ -13,16 +13,18 @@ while (cap.isOpened()):
     ret, frame = cap.read()
     if ret:
         red = frame[:, :, 2]
-        ret, thresh = cv2.threshold(red, 240, 255, cv2.THRESH_BINARY_INV)
+        ret, thresh = cv2.threshold(red, 220, 255, cv2.THRESH_BINARY_INV)
         x, y, w, h = cv2.boundingRect(thresh)
+        row, col = np.where(thresh == 255)
 
-        top = (int(x + w/2), y)
-        bottom = (int(x + w/2), y + h)
+        top = [col[0], row[0]]
+        bottom = [col[-1], row[-1]]
 
-        x_top.append(int(x + w/2))
-        y_top.append(y)
-        x_bottom.append(int(x + w/2))
-        y_bottom.append(y + h)
+        x_top.append(top[0])
+        y_top.append(top[1])
+        x_bottom.append(bottom[0])
+        y_bottom.append(bottom[1])
+
         cv2.circle(frame, top, 8, (0, 255, 0), -1)
         cv2.circle(frame, bottom, 8, (0, 255, 0), -1)
 
@@ -39,10 +41,5 @@ cv2.destroyAllWindows()
 
 plt.plot(x_top, y_top, 'ro')
 plt.plot(x_bottom, y_bottom, 'bo')
-
-X_top = np.array(x_top)
-A_top = np.vstack([X_top, np.ones(len(X_top))]).T
-m, c = np.linalg.lstsq(A_top, y_top, rcond=None)[0]
-plt.plot(x_top, m * X_top + c, 'r')
 
 plt.show()
