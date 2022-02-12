@@ -45,7 +45,6 @@ cv2.destroyAllWindows()
 
 plt.plot(x, y, 'ro')
 
-
 A = np.transpose(np.vstack((np.power(x, 2), x, np.ones(len(x)))))
 X = np.matmul(np.matmul(np.linalg.inv(np.matmul(np.transpose(A), A)),
                         np.transpose(A)), y)
