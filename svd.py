@@ -16,11 +16,16 @@ def svd_decomposition(X):
     evals = evals[idx]
     U = U[:, idx]
     idx = evals2.argsort()[::-1]
+    evals2 = evals2[idx]
     V = V[:, idx]
 
-    S = np.matmul(np.matmul(U, X), np.transpose(V))
+    sig = np.sqrt(evals)
+    S = np.zeros(np.shape(X))
+    for i in range(len(sig)):
+        S[i][i] = sig[i]
+        U[:, i] = np.matmul(A, V[:, i]) / sig[i]
 
-    return np.transpose(U), S, V
+    return U, S, np.transpose(V)
 
 
 if __name__ == '__main__':
@@ -39,21 +44,17 @@ if __name__ == '__main__':
                   [0, 0, 0, -x[3], -y[3], -1, x[3]*yp[3], y[3]*yp[3], yp[3]]])
 
     U, S, VT = svd_decomposition(A)
-    u, s, v = np.linalg.svd(A)
-    # print(s)
-    # s = np.transpose(np.vstack(((np.transpose(np.diag(s))), np.zeros(8))))
-    # print(u)
-    # print('\n')
-    # print(U)
-    # print('\n')
-    # print(v)
-    # print('\n')
-    # print(VT)
-    # print('\n')
-    # print(s)
-    # print('\n')
-    # print(S)
-    # print('\n')
-    print(np.matmul(np.matmul(U, S), VT))
-    print('\n')
+    print('U Matrix is:')
+    print(U)
+    print('\nS Matrix is:')
+    print(S)
+    print('\nVT Matrix is:')
+    print(VT)
+    print('\nComputed A matrix is:')
+    print(np.round(np.matmul(np.matmul(U, S), VT), 4))
+    print('\nOriginal matrix:')
     print(A)
+    print('\nin Ax=0, x is:')
+    print(VT[-1])
+    print('\nHomography matrix H is :')
+    print(VT[-1].reshape((3, 3)))
