@@ -136,7 +136,7 @@ def dist(pt, a, b):
                - ([b[1]*a[0]]))/(np.sqrt((b[1]-a[1])**2+(b[0]-a[0])**2))
 
 
-def ransac(x, y, t):
+def ransac(x, y, t, p):
     """
     Definition
     ---
@@ -146,7 +146,7 @@ def ransac(x, y, t):
     ---
     x, y : data to estimate RANSAC
     t : Threshold
-
+    p : required success rate
     Returns
     ---
     x_lins, y_line : X and Y coordinates of points on the best line
@@ -156,7 +156,6 @@ def ransac(x, y, t):
     sample = 0
     best_line = []
     best_in = []
-    p = 0.95
 
     while (n > sample):
         # Extracting 2 random points

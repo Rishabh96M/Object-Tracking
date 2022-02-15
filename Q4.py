@@ -34,7 +34,7 @@ if __name__ == '__main__':
     print(np.round(np.matmul(np.matmul(U, S), VT), 4))
     print('\nOriginal matrix:')
     print(A)
-    print('\nin Ax=0, x is:')
+    print('\nSolution for Ax=0 is, x:')
     print(VT[-1])
     print('\nHomography matrix H is :')
     print(VT[-1].reshape((3, 3)))

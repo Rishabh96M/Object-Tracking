@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     # threshold for RANSAC
     t = 0.08
-    x_line, y_line, x_in, y_in = estimations.ransac(x_norm, y_norm, t)
+    x_line, y_line, x_in, y_in = estimations.ransac(x_norm, y_norm, t, 0.99)
     print("\nThreshold for RANSAC is:")
     print(t)
     print("\nBest Fitting Line for RANSAC is through points:")

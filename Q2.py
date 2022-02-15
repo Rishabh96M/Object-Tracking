@@ -57,7 +57,7 @@ def traajectory_of_ball(vid_name):
             cv2.circle(frame, bottom, 8, (0, 255, 0), -1)
             cv2.imshow('frame', frame)
 
-            if cv2.waitKey(100) & 0xFF == ord('q'):
+            if cv2.waitKey(50) & 0xFF == ord('q'):
                 break
         else:
             break
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     plt.plot(x, y, 'ro', label='poistion of ball')
     plt.xlabel('time')
     plt.ylabel('ball position')
-    plt.plot(x, y_new, 'g-', label='OLS')
+    plt.plot(x, y_new, 'g--', label='OLS')
     plt.gca().invert_yaxis()
     plt.legend()
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     plt.plot(x, y, 'ro', label='poistion of ball')
     plt.xlabel('time')
     plt.ylabel('ball position')
-    plt.plot(x, y_new, 'g-', label='OLS')
+    plt.plot(x, y_new, 'g--', label='OLS')
     plt.gca().invert_yaxis()
     plt.legend()
     plt.show()
