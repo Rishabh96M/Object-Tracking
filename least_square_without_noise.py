@@ -6,6 +6,7 @@
 #              performing least squares for estimating the path of the ball
 
 import matplotlib.pyplot as plt
+import estimations
 import numpy as np
 import cv2
 
@@ -45,10 +46,8 @@ cv2.destroyAllWindows()
 
 plt.plot(x, y, 'ro')
 
-A = np.transpose(np.vstack((np.power(x, 2), x, np.ones(len(x)))))
-X = np.matmul(np.matmul(np.linalg.inv(np.matmul(np.transpose(A), A)),
-                        np.transpose(A)), y)
+y_new = estimations.ols(x, y, 2)
 
-plt.plot(x, np.matmul(A, X), 'g-')
+plt.plot(x, y_new, 'g-')
 plt.gca().invert_yaxis()
 plt.show()
