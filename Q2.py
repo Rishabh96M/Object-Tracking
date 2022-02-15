@@ -1,9 +1,8 @@
-# Object-Tracking
+# Q2.py
 # Copyright (c) 2022 Rishabh Mukund
 # MIT License
 #
-# Description: Finding the top and bottom of the red ball in each frame and
-#              performing least squares for estimating the path of the ball
+# Description: Answers for Q2 of first assignment
 
 import matplotlib.pyplot as plt
 import estimations
@@ -12,18 +11,39 @@ import cv2
 
 
 def traajectory_of_ball(vid_name):
+    """
+    Definition
+    ---
+    Method to extract top and bottom points of a ball in each frame.
+
+    Parameters
+    ---
+    vid_name : path and name of video file
+
+    Returns
+    ---
+    x : list of x poistions of top and bottom pixel in each frame
+    y : list of y poistions of top and bottom pixel in each frame
+    """
+    # Opening video file
     cap = cv2.VideoCapture(vid_name)
+
+    # initialising empty lists
     x = []
     y = []
 
+    # Reading the video
     while (cap.isOpened()):
         ret, frame = cap.read()
+        # Checking for frame
         if ret:
-            red = frame[:, :, 2]
-            ret, thresh = cv2.threshold(red, 230, 255, cv2.THRESH_BINARY_INV)
-            x_1, y_1, w, h = cv2.boundingRect(thresh)
-            row, col = np.where(thresh == 255)
+            red = frame[:, :, 2]  # Extracting Red Frame
 
+            # Inverse Thresholding to convert to binary
+            ret, thresh = cv2.threshold(red, 230, 255, cv2.THRESH_BINARY_INV)
+            row, col = np.where(thresh == 255)  # Positions of ball in frame
+
+            # Top and Bottom points of ball in frame
             top = [int(np.average(col)), np.min(row)]
             bottom = [int(np.average(col)), np.max(row)]
 
@@ -32,15 +52,16 @@ def traajectory_of_ball(vid_name):
             x.append(bottom[0])
             y.append(bottom[1])
 
+            # Plotting top and bottom points in each frame
             cv2.circle(frame, top, 8, (0, 255, 0), -1)
             cv2.circle(frame, bottom, 8, (0, 255, 0), -1)
-
             cv2.imshow('frame', frame)
 
             if cv2.waitKey(100) & 0xFF == ord('q'):
                 break
         else:
             break
+    # Closing all the handelers
     cap.release()
     cv2.destroyAllWindows()
     return x, y

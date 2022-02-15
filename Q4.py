@@ -1,9 +1,8 @@
-# Object-Tracking
+# Q4.py
 # Copyright (c) 2022 Rishabh Mukund
 # MIT License
 #
-# Description: Finding the top and bottom of the red ball in each frame and
-#              performing least squares for estimating the path of the ball
+# Description: Answers for Q4 of first assignment
 
 import numpy as np
 import estimations
