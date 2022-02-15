@@ -53,9 +53,8 @@ def dist(pt, a, b):
                - ([b[1]*a[0]]))/(np.sqrt((b[1]-a[1])**2+(b[0]-a[0])**2))
 
 
-def ransac(x, y):
+def ransac(x, y, t):
     n = 1000
-    t = 0.08
     sample = 0
     best_line = []
     best_in = []
