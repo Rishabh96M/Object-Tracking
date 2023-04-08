@@ -2,7 +2,7 @@
 
 Verified on python 3.8.10 and packages used are Random, NumPy, Matplotlib and cv2
 
-# Homework - 1
+# Object Tracking
 Tracking a red ball on a white background and comparing the trajectory obtained by least square methods. Without using any high level functions of openCV.
 
 All the methods used are in the estimations.py library
