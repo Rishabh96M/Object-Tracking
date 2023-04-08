@@ -21,19 +21,19 @@ To clone the file:
 ```
 git clone https://github.com/rishabh96m/Object-Tracking.git
 ```
-To run the Q2.py:
+To run object tracking:
 ```
 cd Object-Tracking/
 python3 Q2.py
 ```
 
-To run the Q3.py:
+To run curve fitting:
 ```
 cd Object-Tracking/
 python3 Q3.py
 ```
 
-To run the Q4.py:
+To run svd decomposition:
 ```
 cd Object-Tracking/
 python3 Q4.py
